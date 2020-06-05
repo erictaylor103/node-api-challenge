@@ -47,6 +47,20 @@ router.get('/:id/actions', validateProjectId, (req, res) => {
 })
 
 
+//POST - add a project
+
+router.post('/', (req, res) => {        
+    Projects.insert(req.body).then(project => {
+        console.log(project);
+        res.status(201).json(project);
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({ error: 'Unable to retrieve resource' });
+    });
+})
+
+
+
 
 
 // custom middleware
