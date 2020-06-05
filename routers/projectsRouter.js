@@ -72,7 +72,19 @@ router.post('/:id/actions', validateProjectId, (req, res) => {
       });
 })
 
+//PUT - update a project by id
+//localhost:5000/projects/PROJECTID
+router.put('/:id', validateProjectId, (req, res) => {
+    const { id } = req.params;
+    const updates = req.body;
 
+    Projects.update(id, updates).then(updated => {
+      res.status(200).json(updated);
+    }).catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "The user information could not be modified." });
+    });
+});
 
 // custom middleware
 //VAlidateProjectID
