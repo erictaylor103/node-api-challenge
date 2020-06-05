@@ -34,7 +34,19 @@ router.get('/:id', function(req, res){
     
 })
 
+//PUT - update an action by id
+//localhost:5000/actions/project_id
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
 
+    Actions.update(id, changes).then(updated => {
+      res.status(200).json(updated);
+    }).catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "The user information could not be modified." });
+    });
+});
 
 
 
