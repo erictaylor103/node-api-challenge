@@ -20,7 +20,19 @@ router.get('/', function(req, res){
 })
 
 
-
+//GET actions by id
+router.get('/:id', function(req, res){
+    const {id} = req.params;
+    Actions.get(id)
+    .then(action => {
+        res.status(200).json(action);
+    })
+    .catch(error =>{
+        console.log(error);
+        res.status(500).json( {error: "Unable to get action by id"} );
+    })
+    
+})
 
 
 
