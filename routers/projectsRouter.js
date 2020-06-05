@@ -32,8 +32,40 @@ router.get('/:id', (req, res) => {
     });
 });
 
+//GET an action by project id - sub route
+
+router.get('/:id/actions', validateProjectId, (req, res) => {
+
+    Projects.getProjectActions(req.params.id)
+    .then(project => {
+        console.log(project);
+        res.status(201).json(project);
+      }).catch(err => {
+        console.log(err);
+        res.status(500).json({ error: 'Unable to retrieve the actions' });
+      });
+})
 
 
 
+
+// custom middleware
+//VAlidateProjectID
+
+function validateProjectId(req, res, next) {
+    const { id } = req.params;
+
+    Projects.get(id)
+    .then(project => {
+      console.log('project', project);
+      if( Object.keys(project).length == 0){
+        res.status(400).json({ message: "invalid project id" });
+      }else next();
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: `Couldn't retrieve a project with id: ${id}` });
+    });
+}
 
 module.exports = router;
