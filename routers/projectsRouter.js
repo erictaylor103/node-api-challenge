@@ -86,6 +86,21 @@ router.put('/:id', validateProjectId, (req, res) => {
     });
 });
 
+
+//DELETE an project by it's id
+
+router.delete('/:id', (req, res) => {
+    Projects.remove(req.params.id).then(deleted => {
+      console.log('Project deleted:', deleted);
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ error: "The project was not deleted" });
+    });
+});
+
+
 // custom middleware
 //VAlidateProjectID
 
