@@ -48,8 +48,34 @@ router.put('/:id', (req, res) => {
     });
 });
 
+//DELETE an action by it's id
 
+router.delete('/:id', (req, res) => {
+    Actions.remove(req.params.id).then(deleted => {
+      console.log('Desintegrated:', deleted);
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ error: "Action not deleted" });
+    });
+});
 
+// custom middleware
 
+function validateActionId(req, res, next) {
+    const { id } = req.params;
+    Actions.get(id)
+    .then(action => {
+      console.log('action', action);
+      if( Object.keys(action).length == 0){
+        res.status(400).json({ message: "Enter an id" });
+      }else next();
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: `Can't find an action with the id of: ${id}` });
+    });
+}
 
 module.exports = router;
