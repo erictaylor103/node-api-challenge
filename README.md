@@ -39,14 +39,28 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
+    
+    -Routes -> This is created so servers can watch for URL requests. We can add paramaters to the routes so dynamic URL's can send information for the routes to handle.
+
+    -Express can be used as middleware so we can validate or modify data that is being passed to the server.
 
 - [ ] Describe Middleware?
 
+    -I's a function that intercepts data that is being passed on a route. The middleware can be used to validate any data being passed to the server, for example: we can validate an user or product id to make sure it is valid before we pass the new updated data to the corresponding product based on it's id. So if the id is correct (validated) we let the request pass to the PUt (update) handler.
+
 - [ ] Describe a Resource?
 
+    -It's any kind of data/information stored on the server. We can retrieve this data via URL's and URI's. Example of resources: images, html files, etc.
+
 - [ ] What can the API return to help clients know if a request was successful?
+    
+    -It can return status(200) OK/Successful or status(201) which means that the new data was added or created successfully.
 
 - [ ] How can we partition our application into sub-applications?
+    -Based on today's project this is an example of a partition into sub-applications:
+        api/actions (this is a specific route to the actions route)
+        api/projects (specific to the projects route)
+        api/project_id/actions (this is a sub route that looks for a specific action inside a specific action by id)
 
 ## Minimum Viable Product
 
