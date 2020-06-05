@@ -60,7 +60,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
     -Based on today's project this is an example of a partition into sub-applications:
         api/actions (this is a specific route to the actions route)
         api/projects (specific to the projects route)
-        api/project_id/actions (this is a sub route that looks for a specific action inside a specific action by id)
+        api/project_id/actions (this is a sub route that looks for a specific action inside a specific project by id)
 
 ## Minimum Viable Product
 
