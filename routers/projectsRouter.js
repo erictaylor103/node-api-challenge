@@ -59,7 +59,18 @@ router.post('/', (req, res) => {
     });
 })
 
-
+//POST add project action - add an action to a project by referencing the project id
+//localhost:5000/projects/projectid/actions
+router.post('/:id/actions', validateProjectId, (req, res) => {
+    Actions.insert(req.body)
+    .then(action => {
+        console.log(action);
+        res.status(201).json(action);
+      }).catch(err => {
+        console.log(err);
+        res.status(500).json({ error: 'Unable to get the created action' });
+      });
+})
 
 
 
